@@ -10,7 +10,7 @@ const userSchema = new Schema({
 })
 
 userSchema.virtual('url').get(function() {
-  return '/user/' + this._id;
+  return '/profile/' + this._id;
 })
 
 module.exports = mongoose.model('User', userSchema)
