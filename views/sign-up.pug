@@ -1,0 +1,31 @@
+extends layout
+
+block content
+  h1= title
+  
+  ul
+    if errors != undefined
+      each error in errors
+        li= error.msg
+    else
+
+  form(action='' method='POST')
+    label(for='firstname') First Name
+    input(type='text' name='firstname' autocomplete='off' value=userInput != undefinded ? userInput.firstname : '')
+
+    label(for='lastname') Last Name
+    input(type='text' name='lastname' required autocomplete='off' value=userInput != undefinded ? userInput.lastname : '')
+
+    label(for='username') Username
+    input(type='text' name='username' required autocomplete='off' value=userInput != undefinded ? userInput.username : '')
+
+    label(for='password') Password
+    input(type='password' name='password' required autocomplete='off' value=userInput != undefinded ? userInput.password : '')
+
+    //- label(for='confirmPW') Confirm Password
+    //- input(type='password' name='confirmPW' required autocomplete='off')
+    br
+    input(type='submit' value='Submit')
+    input(type='button' value='Cancel')
+
+  a(href='/user/login') already a member? login here

@@ -1,5 +1,20 @@
 extends layout
 
 block content
-  h1= title
-  p hello from Sign-in
+  if user != undefined
+    h1 #{user.username} is logged in
+    a(href='/user/logout') log out
+  else
+    h1 Log In
+    p= message
+    
+    form(action='' method='POST')
+      label(for='username') Username
+      input(type='text' name='username' autocomplete='off')
+      label(for='password') Password
+      input(type='password' name='password' autocomplete='off')
+      br
+      input(type='submit' value='submit')
+
+    a(href='/user/sign-up') not a member? Sign-up here
+

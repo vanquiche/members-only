@@ -2,4 +2,7 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+  if user == undefined
+    a(href='/user/login') Login
+  else
+    p Welcome #{user.username}!
