@@ -83,3 +83,7 @@ exports.user_logout_post = function (req, res) {
   req.logout();
   res.redirect('/');
 };
+
+exports.user_profile_get = (req, res) => {
+  res.render('profile', {user: req.user})
+}
