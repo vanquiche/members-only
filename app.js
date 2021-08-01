@@ -16,8 +16,8 @@ const User = require('./models/userModel');
 // IMPORT ROUTE FILES
 var indexRouter = require('./routes/index');
 var userRouter = require('./routes/userRoute');
-var messagesRouter = require('./routes/messages');
 var profileRouter = require('./routes/profile');
+var messagesRouter = require('./routes/messages');
 
 var app = express();
 
@@ -44,7 +44,7 @@ passport.use(
         return done(err);
       }
       if (!user) {
-        return done(null, false, { message: 'Incorrect username' });
+        return done(null, false, { message: 'no user with that username' });
       }
       bcrypt.compare(password, user.password, (err, res) => {
         if (res) {
@@ -74,7 +74,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({ secret: 'cats', resave: false, saveUninitialized: true }));
+app.use(session({ secret: process.env.DB_SESSION_SECRET, resave: false, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
