@@ -2,7 +2,7 @@ extends layout
 
 block content
   h1= title
-  
+
   ul
     if errors != undefined
       each error in errors
@@ -10,22 +10,22 @@ block content
     else
 
   form(action='' method='POST')
-    label(for='firstname') First Name
-    input(type='text' name='firstname' autocomplete='off' value=userInput != undefinded ? userInput.firstname : '')
+    div(class='form-group col-md-8')
+      label(for='firstname' class='form-check-label') First Name
+      input(type='text' class='form-control' name='firstname' autocomplete='off' value=userInput != undefinded ? userInput.firstname : '')
 
-    label(for='lastname') Last Name
-    input(type='text' name='lastname' required autocomplete='off' value=userInput != undefinded ? userInput.lastname : '')
+      label(for='lastname' class='form-check-label') Last Name
+      input(type='text' class='form-control form-control-sm' name='lastname' required autocomplete='off' value=userInput != undefinded ? userInput.lastname : '')
 
-    label(for='username') Username
-    input(type='text' name='username' required autocomplete='off' value=userInput != undefinded ? userInput.username : '')
+      label(for='username' class='form-check-label') Username
+      input(type='text' class='form-control form-control-sm' name='username' required autocomplete='off' value=userInput != undefinded ? userInput.username : '')
 
-    label(for='password') Password
-    input(type='password' name='password' required autocomplete='off' value=userInput != undefinded ? userInput.password : '')
+      label(for='password' class='form-check-label') Password
+      input(type='password' class='form-control form-control-sm' name='password' required autocomplete='off' value=userInput != undefinded ? userInput.password : '')
 
-    //- label(for='confirmPW') Confirm Password
-    //- input(type='password' name='confirmPW' required autocomplete='off')
-    br
-    input(type='submit' value='Submit')
-    input(type='button' value='Cancel')
+      //- label(for='confirmPW') Confirm Password
+      //- input(type='password' name='confirmPW' required autocomplete='off')
+
+    input(type='submit' class='btn btn-primary' value='Submit')
 
   a(href='/user/login') already a member? login here

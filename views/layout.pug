@@ -3,9 +3,15 @@ html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet' href='/bootstrap/css/bootstrap.min.css')
+    script(src='/bootstrap/js/bootstrap.bundle.min.js')
+
   body
-    if user != undefined
-      p hello #{user.firstname}
-    else
-      p
+    nav(class='navbar fixed-top navbar-light bg-light')
+      a(href='/messages' class='navbar-brand') Members Only
+      if user != undefined
+        a(href='/user/profile') #{user.firstname}
+      else
+        a(href='/user/login') Login
+
     block content

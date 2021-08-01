@@ -7,14 +7,15 @@ block content
   else
     h1 Log In
     p= message
-    
+
     form(action='' method='POST')
-      label(for='username') Username
-      input(type='text' name='username' autocomplete='off')
-      label(for='password') Password
-      input(type='password' name='password' autocomplete='off')
-      br
-      input(type='submit' value='submit')
+      div(class='form-group col-md-6')
+        label(for='username' class='form-check-label') Username
+        input(type='text' class='form-control form-control-sm' name='username' autocomplete='off')
+        label(for='password' class='form-check-label') Password
+        input(type='password' class='form-control form-control-sm' name='password' autocomplete='off')
+        br
+        input(type='submit' class='btn btn-primary' value='submit')
 
     a(href='/user/sign-up') not a member? Sign-up here
 
