@@ -31,6 +31,14 @@ exports.user_signUp_post = [
     .escape(),
 
   (req, res, next) => {
+    User.find({ username: req.body.username }, (err, result) => {
+      if (result) {
+        res.redirect('sign-up');
+      }
+    });
+  },
+
+  (req, res, next) => {
     const errors = validationResult(req);
 
     bcrypt.hash(req.body.password, 10, (err, hashedPw) => {
@@ -71,7 +79,7 @@ exports.user_login_get = function (req, res) {
 };
 exports.user_login_post = function (req, res, next) {
   passport.authenticate('local', {
-    successRedirect: '/',
+    successRedirect: '/messages',
     failureRedirect: '/user/login',
     failureFlash: true,
   })(req, res, next);
@@ -85,5 +93,5 @@ exports.user_logout_post = function (req, res) {
 };
 
 exports.user_profile_get = (req, res) => {
-  res.render('profile', {user: req.user})
-}
+  res.render('profile', { title: 'Profile', user: req.user });
+};
