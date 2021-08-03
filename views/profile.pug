@@ -2,4 +2,7 @@ extends layout
 
 block content
   h1= title
-  p hello from Profile
+  p hello #{user.firstname}
+
+  form(action='' method='POST')
+    input(type='submit' class='btn btn-link text-decoration-none shadow-none' value='log off')

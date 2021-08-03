@@ -12,20 +12,21 @@ block content
   form(action='' method='POST')
     div(class='form-group col-md-8')
       label(for='firstname' class='form-check-label') First Name
-      input(type='text' class='form-control' name='firstname' autocomplete='off' value=userInput != undefinded ? userInput.firstname : '')
+      input(type='text' class='form-control form-control-sm shadow-none' name='firstname' autocomplete='off' value=userInput != undefinded ? userInput.firstname : '')
 
       label(for='lastname' class='form-check-label') Last Name
-      input(type='text' class='form-control form-control-sm' name='lastname' required autocomplete='off' value=userInput != undefinded ? userInput.lastname : '')
+      input(type='text' class='form-control form-control-sm shadow-none' name='lastname' required autocomplete='off' value=userInput != undefinded ? userInput.lastname : '')
 
       label(for='username' class='form-check-label') Username
-      input(type='text' class='form-control form-control-sm' name='username' required autocomplete='off' value=userInput != undefinded ? userInput.username : '')
+      input(type='text' class='form-control form-control-sm shadow-none' name='username' required autocomplete='off' value=userInput != undefinded ? userInput.username : '')
 
       label(for='password' class='form-check-label') Password
-      input(type='password' class='form-control form-control-sm' name='password' required autocomplete='off' value=userInput != undefinded ? userInput.password : '')
+      input(type='password' class='form-control form-control-sm shadow-none' name='password' required autocomplete='off' value=userInput != undefinded ? userInput.password : '')
+      div.form-text password must be between 4 - 20 characters long.
 
       //- label(for='confirmPW') Confirm Password
       //- input(type='password' name='confirmPW' required autocomplete='off')
 
-    input(type='submit' class='btn btn-primary' value='Submit')
+    input(type='submit' class='btn btn-primary shadow-none mt-1' value='Submit')
 
   a(href='/user/login') already a member? login here

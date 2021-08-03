@@ -1,5 +1,22 @@
 extends layout
 
 block content
-  h1= title
-  p hello from Message Board
+  h1 message-board
+
+  form(class='col-md-8' action='' method='POST')
+    div(class='input-group input-group-sm')
+      input(type='text' class='form-control form-control-sm shadow-none' name='message' autocomplete='off' required placeholder='message...')
+      input(type='submit' class='btn btn-primary shadow-none ml-3' value='send')
+  hr
+  p the following messages is for members only...
+  ul
+    each msg in messages
+      li(class='card bg-light mb-2')
+        div.card-body
+          p.card-title= msg.message
+          p(class='card-subtitle text-muted fs-6') codename: #{author}
+          p(class='card-subtitle text-muted fs-6') decrypted at: #{msg.createdAt}
+          if user.admin == true
+            a(href='#') delete message
+  
+

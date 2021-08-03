@@ -2,16 +2,16 @@ doctype html
 html
   head
     title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel='stylesheet' href='/bootstrap/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
     script(src='/bootstrap/js/bootstrap.bundle.min.js')
 
   body
     nav(class='navbar fixed-top navbar-light bg-light')
-      a(href='/messages' class='navbar-brand') Members Only
+      a(href='/messages' class='nav-link navbar-brand') Members Only
       if user != undefined
-        a(href='/user/profile') #{user.firstname}
+        a(href='/user/profile' class='nav-link') #{user.firstname}
       else
-        a(href='/user/login') Login
+        a(href='/user/login' class='nav-link') Login
 
     block content
