@@ -17,11 +17,11 @@ const User = require('./models/userModel');
 var indexRouter = require('./routes/index');
 var userRouter = require('./routes/userRoute');
 var profileRouter = require('./routes/profile');
-var messagesRouter = require('./routes/messages');
+var messagesRouter = require('./routes/messageRoute');
 
 var app = express();
 
-// MONGO DB CONNECTION
+// MONGO DB CONNECTIOR
 var mongoDB = process.env.DB_URI;
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 var db = mongoose.connection;
