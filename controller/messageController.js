@@ -44,7 +44,7 @@ exports.new_message_post = [
   },
 ];
 
-exports.remove_message_delete = (req, res, next) => {
+exports.remove_message_delete = (req, res) => {
   Message.deleteOne({ _id: req.params._id }, (err) => {
     if (err) {
       return handleError(err);
