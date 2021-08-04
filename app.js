@@ -10,6 +10,7 @@ const LocalStrategy = require('passport-local').Strategy;
 var mongoose = require('mongoose');
 const flash = require('connect-flash');
 const bcrypt = require('bcryptjs');
+const methodOverride = require('method-override');
 
 const User = require('./models/userModel');
 
@@ -74,11 +75,17 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({ secret: process.env.DB_SESSION_SECRET, resave: false, saveUninitialized: true }));
+app.use(
+  session({
+    secret: process.env.DB_SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+  })
+);
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(methodOverride('_method'));
 app.use(flash());
-
 
 // routes
 app.use('/', indexRouter);

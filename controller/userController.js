@@ -31,14 +31,6 @@ exports.user_signUp_post = [
     .escape(),
 
   (req, res, next) => {
-    User.find({ username: req.body.username }, (err, result) => {
-      if (result) {
-        res.redirect('sign-up');
-      }
-    });
-  },
-
-  (req, res, next) => {
     const errors = validationResult(req);
 
     bcrypt.hash(req.body.password, 10, (err, hashedPw) => {

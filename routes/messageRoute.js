@@ -6,6 +6,8 @@ const Message = require('../models/messageModel');
 /* GET home page. */
 router.get('/', message_controller.index);
 
-router.post('/', message_controller.new_message_post)
+router.post('/', message_controller.new_message_post);
+
+router.delete('/:_id', message_controller.remove_message_delete);
 
 module.exports = router;
