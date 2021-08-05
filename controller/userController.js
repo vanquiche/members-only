@@ -80,6 +80,7 @@ exports.user_signUp_post = [
 // USER LOGIN AND LOGOUT CONTROLS
 exports.user_login_get = function (req, res) {
   res.render('login', {
+    title: 'Member Login',
     user: req.user,
     message: req.flash('error'),
   });
