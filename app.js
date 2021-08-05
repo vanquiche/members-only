@@ -11,6 +11,8 @@ var mongoose = require('mongoose');
 const flash = require('connect-flash');
 const bcrypt = require('bcryptjs');
 const methodOverride = require('method-override');
+const compression = require('compression');
+const helmet = require('helmet');
 
 const User = require('./models/userModel');
 
@@ -70,10 +72,12 @@ passport.deserializeUser(function (id, done) {
 });
 
 // express config
+app.use(helmet());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(compression());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(
   session({
