@@ -25,9 +25,8 @@ var messagesRouter = require('./routes/messageRoute');
 var app = express();
 
 // MONGO DB CONNECTIOR
-const dev_db_url =
-  'mongodb+srv://vanquiche:1234@cluster0.xymly.mongodb.net/members-only?retryWrites=true&w=majority';
-var mongoDB = process.env.MONGODB_URI || dev_db_url;
+
+var mongoDB = process.env.MONGODB_URI;
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 var db = mongoose.connection;
 //Bind connection to error event (to get notification of connection errors)
@@ -83,7 +82,7 @@ app.use(compression());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(
   session({
-    secret: process.env.DB_SESSION_SECRET || 'californiaspringrolls',
+    secret: process.env.DB_SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
   })
