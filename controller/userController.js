@@ -1,6 +1,6 @@
 const User = require('../models/userModel');
 const passport = require('passport');
-const { body, validationResult } = require('express-validator');
+const { check, body, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 // passport authentication strategy
 
@@ -29,6 +29,21 @@ exports.user_signUp_post = [
     .trim()
     .isLength({ min: 4, max: 20 })
     .escape(),
+  check('username')
+    .exists()
+    .custom((value, { req }) => {
+      return new Promise((res, rej) => {
+        User.findOne({ username: req.body.username }, (err, user) => {
+          if (err) {
+            rej(new Error('server Error'));
+          }
+          if (Boolean(user)) {
+            rej(new Error('Username already exist'));
+          }
+          res(true);
+        });
+      });
+    }),
 
   (req, res, next) => {
     const errors = validationResult(req);
@@ -75,9 +90,6 @@ exports.user_login_post = function (req, res, next) {
     failureRedirect: '/user/login',
     failureFlash: true,
   })(req, res, next);
-
-  // authenticate username and password
-  // with bcrypt
 };
 exports.user_logout_post = function (req, res) {
   req.logout();
